@@ -22,6 +22,8 @@ import { similarNames } from '@/utils/similarity.ts';
 import { toTrackRanges } from '@/utils/tracklist.ts';
 import { simplifyName } from 'utils/string/simplify.js';
 
+type RawTrack = TrackInfo & Partial<TrackCurrent>;
+
 export default class BandcampProvider extends MetadataProvider {
 	readonly name = 'Bandcamp';
 
@@ -120,7 +122,7 @@ export default class BandcampProvider extends MetadataProvider {
 	}
 
 	/** Determines the link types for a track based on its data. */
-	getTrackLinkTypes(track: TrackInfo): LinkType[] {
+	getTrackLinkTypes(track: RawTrack): LinkType[] {
 		const linkTypes: LinkType[] = [];
 
 		if (this.isFreeStreamingTrack(track)) {
@@ -128,11 +130,11 @@ export default class BandcampProvider extends MetadataProvider {
 		}
 
 		if (track.is_downloadable === true) {
-			if (track.has_free_download) {
+			if (track.has_free_download || (track.minimum_price === 0.0 && !track.is_set_price)) {
 				linkTypes.push('free download');
-			} else {
+			}
+			if (!track.has_free_download) {
 				linkTypes.push('paid download');
-				// TODO: And potentially a free download
 			}
 		}
 
@@ -186,7 +188,7 @@ export default class BandcampProvider extends MetadataProvider {
 		});
 	}
 
-	isFreeStreamingTrack(track: TrackInfo): boolean {
+	isFreeStreamingTrack(track: RawTrack): boolean {
 		return track.streaming === 1 && !!track.file;
 	}
 }
@@ -268,8 +270,12 @@ export class BandcampReleaseLookup extends ReleaseLookup<BandcampProvider, Relea
 			}
 		}
 
+		const needToFetchDetailedTracklist = this.options.withISRC;
+
+		console.log(this.options, this.lookup, this.entity);
+
 		const images = [this.getArtwork(rawRelease.art_id, ['front'])];
-		let tracks: TrackInfo[] = rawRelease.trackinfo;
+		let tracks: RawTrack[] = rawRelease.trackinfo;
 		if (rawRelease.item_type === 'album' && rawRelease.album_is_preorder) {
 			// Fetch embedded player JSON which already has all track durations for pre-orders.
 			const embeddedPlayerRelease = await this.getEmbeddedPlayerRelease(rawRelease.id);
@@ -297,12 +303,26 @@ export class BandcampReleaseLookup extends ReleaseLookup<BandcampProvider, Relea
 					(track) => this.getArtwork(track.art_id!, ['track'], `Track ${track.tracknum + 1}`),
 				));
 			}
+		} else if (current.type === 'album' && needToFetchDetailedTracklist) {
+			// Only add release ISRC if this is the only provider to avoid costly lookups to Bandcamp.
+			tracks = await Promise.all(tracks.map(async (track) => {
+				const trackUrl = track.title_link ? new URL(track.title_link, this.rawReleaseUrl) : undefined;
+
+				if (!trackUrl) return track;
+
+				const trackJson = await this.provider.extractEmbeddedJson<ReleasePage>(
+					trackUrl,
+					this.options.snapshotMaxTimestamp,
+				);
+				const trackInfo = trackJson.content.tralbum.trackinfo[0];
+				const trackCurrent = trackJson.content.tralbum.current as TrackCurrent;
+				if (!trackInfo) return track;
+				return { ...trackInfo, ...trackCurrent };
+			}));
+		} else if (current.type === 'track' && this.options.withISRC) {
+			tracks = tracks.map((track) => ({ ...track, ...current }));
 		}
 		const tracklist = tracks.map(this.convertRawTrack.bind(this));
-
-		if (current.type === 'track' && current.isrc) {
-			tracklist[0].isrc = current.isrc;
-		}
 
 		const realTrackCount = albumPage['og:description']?.match(/(\d+) track/i)?.[1];
 		if (realTrackCount) {
@@ -380,7 +400,7 @@ export class BandcampReleaseLookup extends ReleaseLookup<BandcampProvider, Relea
 		return release;
 	}
 
-	convertRawTrack(rawTrack: TrackInfo, index: number): HarmonyTrack {
+	convertRawTrack(rawTrack: RawTrack, index: number): HarmonyTrack {
 		const { artist, title_link } = rawTrack;
 		let { title } = rawTrack;
 		const trackNumber = rawTrack.track_num ?? index + 1;
@@ -403,6 +423,7 @@ export class BandcampReleaseLookup extends ReleaseLookup<BandcampProvider, Relea
 					})
 					: [],
 			},
+			isrc: rawTrack.isrc || undefined,
 		};
 	}
 

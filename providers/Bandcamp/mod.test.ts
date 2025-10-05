@@ -7,10 +7,16 @@ import { assertSnapshot } from '@std/testing/snapshot';
 import BandcampProvider from './mod.ts';
 import { isDefined } from '@/utils/predicate.ts';
 import { assertEquals } from 'std/assert/assert_equals.ts';
+import type { ReleaseOptions } from '@/harmonizer/types.ts';
 
 describe('Bandcamp provider', () => {
 	const bc = new BandcampProvider(makeProviderOptions());
 	const lookupStub = stubProviderLookups(bc);
+
+	// Standard options which have an effect for Spotify.
+	const releaseOptions: ReleaseOptions = {
+		withISRC: true,
+	};
 
 	describeProvider(bc, {
 		urls: [{
@@ -46,6 +52,7 @@ describe('Bandcamp provider', () => {
 		releaseLookup: [{
 			description: 'label release with fixed price (which is not free despite minimum_price of 0.0)',
 			release: 'thedarkthursday/and-it-was-a-burned-into-my-mind-yet-i-faltered-like-a-broken-record',
+			options: releaseOptions,
 			assert: async (release, ctx) => {
 				await assertSnapshot(ctx, release);
 				const isFree = release.externalLinks.some((link) => link.types?.includes('free download'));
@@ -63,6 +70,7 @@ describe('Bandcamp provider', () => {
 		}, {
 			description: 'subscriber-only release',
 			release: 'arbee/des-papiers-ii',
+			options: releaseOptions,
 			assert: async (release, ctx) => {
 				await assertSnapshot(ctx, release);
 
@@ -102,6 +110,7 @@ describe('Bandcamp provider', () => {
 		}, {
 			description: 'subscriber-only release with Creative Commons license',
 			release: 'stevelawson/ambiguous-hands',
+			options: releaseOptions,
 			assert: async (release, ctx) => {
 				await assertSnapshot(ctx, release);
 
@@ -117,6 +126,7 @@ describe('Bandcamp provider', () => {
 		}, {
 			description: 'single track release',
 			release: 'svenfredrik/track/mr-florida-81',
+			options: releaseOptions,
 			assert: async (release, ctx) => {
 				await assertSnapshot(ctx, release);
 
@@ -131,6 +141,7 @@ describe('Bandcamp provider', () => {
 		}, {
 			description: 'release with name your price (non-minimum price), but tracks have minimum price',
 			release: 'frisyr/demo',
+			options: releaseOptions,
 			assert: async (release, ctx) => {
 				await assertSnapshot(ctx, release);
 
@@ -161,6 +172,7 @@ describe('Bandcamp provider', () => {
 		}, {
 			description: 'release with name your price (non-minimum price), but most tracks have non-minimum price',
 			release: 'muzea/ambient-energy-name-your-price',
+			options: releaseOptions,
 			assert: async (release, ctx) => {
 				await assertSnapshot(ctx, release);
 
@@ -184,6 +196,7 @@ describe('Bandcamp provider', () => {
 		}, {
 			description: 'release with some download only tracks and one streamable track',
 			release: 'hipdozer/futon-feels',
+			options: releaseOptions,
 			assert: async (release, ctx) => {
 				await assertSnapshot(ctx, release);
 			},
@@ -207,6 +220,7 @@ describe('Bandcamp provider', () => {
 			description:
 				'release with 7/12 tracks streamable, i.e. more than half track as streamable while rest is download only',
 			release: 'lunar-module/bear-creek',
+			options: releaseOptions,
 			assert: async (release, ctx) => {
 				await assertSnapshot(ctx, release);
 

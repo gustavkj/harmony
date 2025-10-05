@@ -68,6 +68,7 @@ suika.love",
       tracklist: [
         {
           artists: undefined,
+          isrc: undefined,
           length: 81250,
           number: 1,
           recording: {
@@ -87,6 +88,7 @@ suika.love",
         },
         {
           artists: undefined,
+          isrc: undefined,
           length: 72019.2,
           number: 2,
           recording: {
@@ -106,6 +108,7 @@ suika.love",
         },
         {
           artists: undefined,
+          isrc: undefined,
           length: 60942.3,
           number: 3,
           recording: {
@@ -199,6 +202,7 @@ snapshot[`Bandcamp provider > release lookup > subscriber-only release 1`] = `
       tracklist: [
         {
           artists: undefined,
+          isrc: undefined,
           length: 181519,
           number: 1,
           recording: {
@@ -299,6 +303,7 @@ All the things, Steve. Cover model: Flapjack.",
       tracklist: [
         {
           artists: undefined,
+          isrc: undefined,
           length: 1090050,
           number: 1,
           recording: {
@@ -491,6 +496,7 @@ snapshot[`Bandcamp provider > release lookup > release with name your price (non
       tracklist: [
         {
           artists: undefined,
+          isrc: undefined,
           length: 120244,
           number: 1,
           recording: {
@@ -510,6 +516,7 @@ snapshot[`Bandcamp provider > release lookup > release with name your price (non
         },
         {
           artists: undefined,
+          isrc: undefined,
           length: 102831,
           number: 2,
           recording: {
@@ -529,6 +536,7 @@ snapshot[`Bandcamp provider > release lookup > release with name your price (non
         },
         {
           artists: undefined,
+          isrc: undefined,
           length: 101310,
           number: 3,
           recording: {
@@ -537,6 +545,7 @@ snapshot[`Bandcamp provider > release lookup > release with name your price (non
                 id: "frisyr/vollrausch-2",
                 linkTypes: [
                   "free streaming",
+                  "free download",
                   "paid download",
                 ],
                 provider: "bandcamp",
@@ -548,6 +557,7 @@ snapshot[`Bandcamp provider > release lookup > release with name your price (non
         },
         {
           artists: undefined,
+          isrc: undefined,
           length: 106568,
           number: 4,
           recording: {
@@ -566,6 +576,7 @@ snapshot[`Bandcamp provider > release lookup > release with name your price (non
         },
         {
           artists: undefined,
+          isrc: undefined,
           length: 82049,
           number: 5,
           recording: {
@@ -584,6 +595,7 @@ snapshot[`Bandcamp provider > release lookup > release with name your price (non
         },
         {
           artists: undefined,
+          isrc: undefined,
           length: 161625,
           number: 6,
           recording: {
@@ -678,6 +690,7 @@ snapshot[`Bandcamp provider > release lookup > release with name your price (non
       tracklist: [
         {
           artists: undefined,
+          isrc: undefined,
           length: 401067,
           number: 1,
           recording: {
@@ -686,6 +699,7 @@ snapshot[`Bandcamp provider > release lookup > release with name your price (non
                 id: "muzea/immersion-i",
                 linkTypes: [
                   "free streaming",
+                  "free download",
                   "paid download",
                 ],
                 provider: "bandcamp",
@@ -697,6 +711,7 @@ snapshot[`Bandcamp provider > release lookup > release with name your price (non
         },
         {
           artists: undefined,
+          isrc: undefined,
           length: 489230,
           number: 2,
           recording: {
@@ -705,6 +720,7 @@ snapshot[`Bandcamp provider > release lookup > release with name your price (non
                 id: "muzea/immersion-ii",
                 linkTypes: [
                   "free streaming",
+                  "free download",
                   "paid download",
                 ],
                 provider: "bandcamp",
@@ -716,6 +732,7 @@ snapshot[`Bandcamp provider > release lookup > release with name your price (non
         },
         {
           artists: undefined,
+          isrc: undefined,
           length: 417185,
           number: 3,
           recording: {
@@ -724,6 +741,7 @@ snapshot[`Bandcamp provider > release lookup > release with name your price (non
                 id: "muzea/lost-in-paradise",
                 linkTypes: [
                   "free streaming",
+                  "free download",
                   "paid download",
                 ],
                 provider: "bandcamp",
@@ -735,6 +753,7 @@ snapshot[`Bandcamp provider > release lookup > release with name your price (non
         },
         {
           artists: undefined,
+          isrc: undefined,
           length: 345423,
           number: 4,
           recording: {
@@ -743,6 +762,7 @@ snapshot[`Bandcamp provider > release lookup > release with name your price (non
                 id: "muzea/lonely-sky",
                 linkTypes: [
                   "free streaming",
+                  "free download",
                   "paid download",
                 ],
                 provider: "bandcamp",
@@ -754,6 +774,7 @@ snapshot[`Bandcamp provider > release lookup > release with name your price (non
         },
         {
           artists: undefined,
+          isrc: undefined,
           length: 381000,
           number: 5,
           recording: {
@@ -851,6 +872,7 @@ snapshot[`Bandcamp provider > release lookup > release with some download only t
       tracklist: [
         {
           artists: undefined,
+          isrc: "FR9Z62300371",
           length: 135875,
           number: 1,
           recording: {
@@ -866,6 +888,7 @@ snapshot[`Bandcamp provider > release lookup > release with some download only t
         },
         {
           artists: undefined,
+          isrc: "FR9Z62300372",
           length: 122625,
           number: 2,
           recording: {
@@ -881,6 +904,7 @@ snapshot[`Bandcamp provider > release lookup > release with some download only t
         },
         {
           artists: undefined,
+          isrc: "FR9Z62300373",
           length: 129780,
           number: 3,
           recording: {
@@ -896,6 +920,7 @@ snapshot[`Bandcamp provider > release lookup > release with some download only t
         },
         {
           artists: undefined,
+          isrc: "FR9Z62300374",
           length: 140000,
           number: 4,
           recording: {
@@ -1006,6 +1031,7 @@ snapshot[`Bandcamp provider > release lookup > release with a hidden track 1`] =
       tracklist: [
         {
           artists: undefined,
+          isrc: undefined,
           length: 401139,
           number: 1,
           recording: {
@@ -1025,6 +1051,7 @@ snapshot[`Bandcamp provider > release lookup > release with a hidden track 1`] =
         },
         {
           artists: undefined,
+          isrc: undefined,
           length: 366557,
           number: 2,
           recording: {
@@ -1049,6 +1076,7 @@ snapshot[`Bandcamp provider > release lookup > release with a hidden track 1`] =
               name: "Ragnar Atari, Otherland",
             },
           ],
+          isrc: undefined,
           length: 303352,
           number: 3,
           recording: {
@@ -1068,6 +1096,7 @@ snapshot[`Bandcamp provider > release lookup > release with a hidden track 1`] =
         },
         {
           artists: undefined,
+          isrc: undefined,
           length: 401139,
           number: 4,
           recording: {
@@ -1087,6 +1116,7 @@ snapshot[`Bandcamp provider > release lookup > release with a hidden track 1`] =
         },
         {
           artists: undefined,
+          isrc: undefined,
           length: 366636,
           number: 5,
           recording: {
@@ -1198,6 +1228,7 @@ LM005",
       tracklist: [
         {
           artists: undefined,
+          isrc: undefined,
           length: 230027,
           number: 1,
           recording: {
@@ -1217,6 +1248,7 @@ LM005",
         },
         {
           artists: undefined,
+          isrc: undefined,
           length: 137240,
           number: 2,
           recording: {
@@ -1236,6 +1268,7 @@ LM005",
         },
         {
           artists: undefined,
+          isrc: undefined,
           length: 219173,
           number: 3,
           recording: {
@@ -1255,6 +1288,7 @@ LM005",
         },
         {
           artists: undefined,
+          isrc: undefined,
           length: 93453.3,
           number: 4,
           recording: {
@@ -1273,6 +1307,7 @@ LM005",
         },
         {
           artists: undefined,
+          isrc: undefined,
           length: 221467,
           number: 5,
           recording: {
@@ -1291,6 +1326,7 @@ LM005",
         },
         {
           artists: undefined,
+          isrc: undefined,
           length: 255560,
           number: 6,
           recording: {
@@ -1309,6 +1345,7 @@ LM005",
         },
         {
           artists: undefined,
+          isrc: undefined,
           length: 230547,
           number: 7,
           recording: {
@@ -1328,6 +1365,7 @@ LM005",
         },
         {
           artists: undefined,
+          isrc: undefined,
           length: 69133.3,
           number: 8,
           recording: {
@@ -1347,6 +1385,7 @@ LM005",
         },
         {
           artists: undefined,
+          isrc: undefined,
           length: 212333,
           number: 9,
           recording: {
@@ -1365,6 +1404,7 @@ LM005",
         },
         {
           artists: undefined,
+          isrc: undefined,
           length: 110707,
           number: 10,
           recording: {
@@ -1384,6 +1424,7 @@ LM005",
         },
         {
           artists: undefined,
+          isrc: undefined,
           length: 188080,
           number: 11,
           recording: {
@@ -1403,6 +1444,7 @@ LM005",
         },
         {
           artists: undefined,
+          isrc: undefined,
           length: 298173,
           number: 12,
           recording: {
